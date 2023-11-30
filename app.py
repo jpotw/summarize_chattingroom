@@ -23,7 +23,7 @@ def read_file_content(file_path):
 def search_target_date(content):
     found = False
     global target_date
-    while not found and target_date >= current_date - datetime.timedelta(days=7):
+    while not found and target_date >= current_date - datetime.timedelta(days=30):
         target_date_str = target_date.strftime("%Y년 %m월 %d일")  # Modify the format as needed
         if target_date_str in content:
             found = True
