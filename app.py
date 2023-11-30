@@ -5,7 +5,7 @@ import streamlit as st
 
 # Calculate the target date as one week ago from the current date
 current_date = datetime.datetime.now()
-target_date = current_date - datetime.timedelta(days=7)
+target_date = current_date - datetime.timedelta(days=30)
 
 
 # Convert the target date to a string in the desired format
