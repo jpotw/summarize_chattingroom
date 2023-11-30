@@ -92,10 +92,10 @@ prompt = """
     --- 
     사용자가 추가 질문이 있다면 txt 파일 내의 지식을 이용하여 답변해주세요.
     """
-st.text_area("프롬프트", value=prompt, height=300)
+st.text_area("프롬프트(Ctrl C+V로 복사)", value=prompt, height=300)
 
 
-url = "https://poe.com/Claude-instant-100k"
+url = "https://claude.ai/"
 
 
 if st.button("채팅창으로 가기"):
