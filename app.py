@@ -5,7 +5,7 @@ import streamlit as st
 
 # Calculate the target date as one week ago from the current date
 current_date = datetime.datetime.now()
-target_date = current_date - datetime.timedelta(days=30)
+target_date = current_date - datetime.timedelta(days=7)
 
 
 # Convert the target date to a string in the desired format
@@ -23,7 +23,7 @@ def read_file_content(file_path):
 def search_target_date(content):
     found = False
     global target_date
-    while not found and target_date >= current_date - datetime.timedelta(days=30):
+    while not found and target_date >= current_date - datetime.timedelta(days=7):
         target_date_str = target_date.strftime("%Y년 %m월 %d일")  # Modify the format as needed
         if target_date_str in content:
             found = True
@@ -86,8 +86,9 @@ prompt = """
     해당 txt 파일을 다음의 형식으로 정리해서 보여주세요:
     ---
     # 주요 인사이트/통찰점 
-    관련해서 가장 많은 언급/반응이 있었던 내용을 기준으로 합니다.
-    # 언급되었던 URL 모음 
+    관련해서 가장 많은 언급/반응이 있었던 주제 10가지를 bullet으로 제시합니다.
+    # 언급되었던 URL 모음
+    최소 5개의 링크를 제시합니다. 
     {링크} - {링크에 대한 설명} 형식으로 적어주세요. 
     --- 
     사용자가 추가 질문이 있다면 txt 파일 내의 지식을 이용하여 답변해주세요.
