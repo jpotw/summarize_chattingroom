@@ -7,7 +7,7 @@ import re
 
 def make_new_file(uploaded_document):
     current_date = datetime.datetime.now()
-    target_date = current_date - datetime.timedelta(days=1)
+    target_date = current_date - datetime.timedelta(days=7)
     file = uploaded_document.read().decode("utf-8", errors="ignore")
 
     target_date_str = f"{target_date.year}년 {target_date.month}월 {target_date.day}일"
@@ -28,7 +28,8 @@ def make_new_file(uploaded_document):
     else:
         st.write(f"{target_date_str}의 기록을 찾을 수 없습니다.")
         while target_date_str not in file:
-            target_date_str -= datetime.timedelta(days=1)
+            target_date -= datetime.timedelta(days=1)
+            target_date_str = f"{target_date.year}년 {target_date.month}월 {target_date.day}일"
         st.write(f"{target_date_str}의 기록을 찾았습니다.")
         start_index = file.index(target_date_str)
         new_content = file[start_index:]
