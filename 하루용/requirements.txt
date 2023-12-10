@@ -1,8 +1,6 @@
 streamlit
 langchain
-dotenv
-os
-re
-datetime
+python-dotenv
+chromadb
 
 
