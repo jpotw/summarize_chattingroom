@@ -8,12 +8,13 @@ import streamlit_scrollable_textbox as stx
 ## 타이틀
 st.title("🗎 오픈 채팅방의 일주일 내용을 요약해드립니다.")
 
-#Streamlit 특성을 반영하여 프롬프트 오류 방지
 if 'clickable_urls' not in st.session_state:
     st.session_state.clickable_urls = None
 
+# 파일 업로드
 uploaded_file = st.file_uploader('카카오톡 txt파일을 업로드하세요.', type='txt')
 
+# 파일 자르기
 if uploaded_file is not None:
     with st.spinner('파일을 자르는 중입니다.'):
         new_file = make_new_file(uploaded_file)
@@ -23,6 +24,7 @@ if uploaded_file is not None:
             data=new_file,
             key='download_button'
         )
+        # URL 추출하기
         if st.button('URL만 추출하기'):
             if extract_urls(new_file):
                 st.write("URL:")
