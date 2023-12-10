@@ -9,6 +9,15 @@
 4. URL에 대한 설명을 위한 프롬프트 템플릿
 
 
+# 사용 방법
+1. 요약하고 싶은 카카오톡 방을 '카카오톡 내보내기'를 통해 txt파일로 저장해준다.
+2. 업로드한다.
+3. 잘린 파일을 다운로드한다.
+4. URL, 프롬프트 버튼을 누른다.
+5. 프롬프트를 복사한 후 첨부한 링크(claude.ai)로 간다.
+6. 프롬프트 붙여넣고 잘린 파일을 업로드한다.
+7. 계속 채팅하면 된다.
+
 # Requirements(로컬에서 돌릴 경우)
 
 ```
@@ -18,3 +27,4 @@ pip install streamlit-scrollable-textbox
 
 # 귀찮을 경우
 streamlit 서버에 올려놔서 이 링크 타고 들어가도 됩니다
+https://summarizechattingroom-final.streamlit.app/
