@@ -105,20 +105,24 @@ def summarize(Document, openai_api_key):
     return chain.run(Document)
 
 
+## make Database 함수; input: Doc output: Embedding Vector (db 중복 방지용)
+def generate_db(texts, openai_api_key):
+    embeddings=OpenAIEmbeddings(openai_api_key=openai_api_key)
+    if not embeddings:
+        raise ValueError("임베딩 생성 실패")
+        # Create a vectorstore from documents using OpenAI Embeddings
+    db = Chroma.from_documents(texts, embeddings)
+    if not db:
+        raise ValueError("db 생성 실패")
+    return db
+
 
 ## QA Train 함수; input: Str, Str output: Str
-def generate_response(texts, query_text, openai_api_key):
-        embeddings=OpenAIEmbeddings(openai_api_key=openai_api_key)
-        if not embeddings:
-            raise ValueError("임베딩 생성 실패")
-        # Create a vectorstore from documents using OpenAI Embeddings
-        db = Chroma.from_documents(texts, embeddings)
-        if not db:
-            raise ValueError("db 생성 실패")
+def generate_response(db, query_text, openai_api_key):
         # Create retriever interface
         retriever = db.as_retriever()
         # Create QA chain chain type stuff 일단 생략
-        qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(openai_api_key=openai_api_key, model_name='gpt-3.5-turbo'), retriever=retriever)
+        qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(openai_api_key=openai_api_key, model_name='gpt-3.5-turbo'), retriever=retriever,  chain_type="stuff")
         if not qa:
             raise ValueError("QA Train 생성 실패")
         return qa.run(query_text)
