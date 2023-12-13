@@ -53,7 +53,11 @@ with st.form('프롬프트 만들기', clear_on_submit=True):
 
     이 파일은 "{chattingroom}"이라는 채팅방의 기록입니다.
     해당 채팅방에서는 주로 "{content}"을 주제로 이야기합니다.
-    해당 txt 파일에서 최종적으로 가장 언급이 많았던 많았던 주제 5가지 bullet point로 제시합니다.
+    형식은 다음과 같습니다.
+    '''
+    #핵심 인사이트:
+    내용: 해당 txt 파일에서 최종적으로 가장 언급이 많았던 많았던 주제 5가지 bullet point로 제시합니다.
+    '''
     """
         )
 
@@ -63,7 +67,7 @@ with st.form('프롬프트 만들기2', clear_on_submit=True):
     submitted = st.form_submit_button('URL 설명용 프롬프트')
     if submitted and st.session_state.clickable_urls:  # clickable_urls가 정의되었는지 확인
         stx.scrollableTextbox(f"""
-            첨부한 문서 내용을 바탕으로 아래 링크들에 대한 설명을 해주세요:
+            첨부한 문서 내용을 바탕으로 아래 링크들에 대한 설명을 "링크 : 내용설명" 의 형식으로 설명 해주세요:
                 {st.session_state.clickable_urls}""")
     #URL만 추출하기 버튼 안 누른 경우 예외 처리 필요!
 
